@@ -14,19 +14,18 @@ class Obstaculo:
         self.mascara = py.mask.from_surface(self.imagem)
 
         #guardando a posição inicial e final
-        self.faixas = [140,220,310,410,520]
-        self.x_inicial = 1280
-        #self.y_inicial = 220
-        self.posicao_x = self.x_inicial
+        self.faixas = [740,220,310,410,520,700]
+        self.y_inicial = 0
+        self.posicao_x = self.y_inicial
         self.posicao_y = random.choice(self.faixas)
 
     #controlando a velocidade do obstaculo
-        self.velocidade = random.randint(5,25)
+        self.velocidade = random.randint(5,10)
 
 
     def movimentar(self):
-        self.posicao_x -= self.velocidade
-        if self.posicao_x < 0 - self.largura:
-            self.posicao_x = self.x_inicial
-            self.velociade = random.randint(5,25)
+        self.posicao_y += self.velocidade
+        if self.posicao_y > 700 - self.largura:
+            self.posicao_y = self.y_inicial
+            self.velociade = random.randint(5,10)
             self.posicao_y = random.choice(self.faixas)
