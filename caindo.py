@@ -43,11 +43,13 @@ homem = Jogador("imagem/homem.png",300, 300, 100, 500)
 #y_inicial = 500
 # Move 'bem_caindo' down
 
-lista_obstaculo = [Obstaculo("imagem/mal.png",130, 100),
-                  Obstaculo("imagem/mal.png", 130, 100),
-                  Obstaculo("imagem/mal.png", 130, 100)]
+lista_obstaculo = [Obstaculo("imagem/mal.png",200, 200),
+                  Obstaculo("imagem/mal.png", 200, 200),
+                  Obstaculo("imagem/mal.png", 200, 200)]
 
-
+lista_bem = [Obstaculo("imagem/bem.png", 200, 200),
+             Obstaculo("imagem/bem2.png", 200, 200),
+             Obstaculo("imagem/bem3.png", 200, 200)]
 
 # loop infinito
 estado = "jogando"
@@ -69,11 +71,21 @@ while not fimjogo:
 
         tela.blit(fundo, (0, 0))  # desenha o fundo
         tela.blit(homem.imagem, (homem.posicao_x, homem.posicao_y))
-        tela.blit(bem.imagem, (bem.posicao_x, bem.posicao_y))
-        tela.blit(bem.imagem, (bem.posicao_y, bem.posicao_x))
-        tela.blit(lista_obstaculo[0].imagem, (lista_obstaculo[0].posicao_y, lista_obstaculo[0].posicao_x))
+        #mal
+        tela.blit(lista_obstaculo[0].imagem, (lista_obstaculo[0].posicao_x, lista_obstaculo[0].posicao_y))
+        tela.blit(lista_obstaculo[0].imagem, (lista_obstaculo[0].posicao_x, lista_obstaculo[0].posicao_y))
+        tela.blit(lista_obstaculo[0].imagem, (lista_obstaculo[0].posicao_x, lista_obstaculo[0].posicao_y))
+
+        #bem
+        tela.blit(lista_bem[0].imagem, (lista_bem[0].posicao_x, lista_bem[0].posicao_y))
+        tela.blit(lista_bem[0].imagem, (lista_bem[0].posicao_x, lista_bem[0].posicao_y))
+        tela.blit(lista_bem[0].imagem, (lista_bem[0].posicao_x, lista_bem[0].posicao_y))
+        tela.blit(lista_bem[0].imagem, (lista_bem[0].posicao_x, lista_bem[0].posicao_y))
+        tela.blit(lista_bem[0].imagem, (lista_bem[0].posicao_x, lista_bem[0].posicao_y))
+
         py.display.update()       # atualiza a tela
         lista_obstaculo[0].movimentar()
+        lista_bem[0].movimentar()
 
 #x inicial y inicial (homem.posicao_x, homem.posicao_y))
 #(homem.x_inicial, homem.y_inicial))

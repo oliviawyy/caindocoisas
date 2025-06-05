@@ -28,4 +28,4 @@ class Obstaculo:
         if self.posicao_y > 700 - self.largura:
             self.posicao_y = self.y_inicial
             self.velociade = random.randint(5,10)
-            self.posicao_y = random.choice(self.faixas)
+            self.posicao_x = random.choice(self.faixas)
