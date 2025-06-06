@@ -11,6 +11,8 @@ class Jogador:
         self.posicao_x = posicaoXinicial
         self.posicao_y =  posicaoYinicial
 
+        self.pontos = 0
+        
     def movimentar(self, cima, baixo, direita, esquerda):
 
         teclas = py.key.get_pressed()
