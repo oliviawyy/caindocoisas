@@ -1,7 +1,7 @@
 import pygame as py
 class Jogador:
 
-    def __init__(self,figura,largura,altura, posicaoXinicial, posicaoYinicial):
+    def __init__(self,figura,largura,altura, posicaoXinicial, posicaoYinicial,som_pontos):
         self.imagem = py.image.load(figura)
         self.imagem = py.transform.scale(self.imagem,(largura, altura))
         self.mascara = py.mask.from_surface(self.imagem)
@@ -12,6 +12,8 @@ class Jogador:
         self.posicao_y =  posicaoYinicial
 
         self.pontos = 0
+        self.som = py.mixer.Sound(som_pontos)
+        self.som_pontos = py.mixer.Sound(som_pontos)
         
     def movimentar(self, cima, baixo, direita, esquerda):
 

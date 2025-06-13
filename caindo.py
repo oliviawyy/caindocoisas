@@ -1,6 +1,7 @@
 from jogador import Jogador
 from obstaculo import Obstaculo
 import pygame as py
+from caminho_relativo import caminho_relativo
 
 print(""" 
                                     _               
@@ -14,7 +15,7 @@ print("""
 
 py.init()
 py.mixer.init()
-py.mixer.music.load('imagem/musica.mp3')
+py.mixer.music.load(caminho_relativo('imagem/musica.mp3'))
 py.mixer.music.play(-1)  # -1 para reproduzir em loop
 clock = py.time.Clock()
 
@@ -26,31 +27,31 @@ CORES = {"BRANCO":(255,255,255),
 
 # criar tela
 tela = py.display.set_mode((1280,780))
-telafinal = py.image.load("imagem/fim.png")
+telafinal = py.image.load(caminho_relativo("imagem/fim.png"))
 telafinal = py.transform.scale(telafinal,(1280,780))
 
 
 # carregar fundo
-fundo = py.image.load("imagem/fundo-fantasma.png")
+fundo = py.image.load(caminho_relativo("imagem/fundo-fantasma.png"))
 fundo = py.transform.scale(fundo, (1280,780))
  # -1 para reproduzir em loop
 # Criar personagem
 
 #homem = Jogador("imagem/homem.png", 100, 100, 420, 614)
-homem = Jogador("imagem/homem.png",200, 200, 100, 550)
+homem = Jogador(caminho_relativo("imagem/homem.png"),200, 200, 100, 550, caminho_relativo("imagem/somm.mp3"))
 
 #homem = py.transform.scale(homem, (300, 300))
 #x_inicial = 100
 #y_inicial = 500
 # Move 'bem_caindo' down
 
-lista_obstaculo = [Obstaculo("imagem/mal.png",200, 200),
-                  Obstaculo("imagem/mal2.png", 200, 200),
-                  Obstaculo("imagem/mal3.png", 200, 200)]
+lista_obstaculo = [Obstaculo(caminho_relativo("imagem/mal.png"),200, 200),
+                  Obstaculo(caminho_relativo("imagem/mal2.png"), 200, 200),
+                  Obstaculo(caminho_relativo("imagem/mal3.png"), 200, 200)]
 
-lista_bem = [Obstaculo("imagem/bem.png", 200, 200),
-             Obstaculo("imagem/bem.png", 200, 200),
-             Obstaculo("imagem/bem.png", 200, 200)]
+lista_bem = [Obstaculo(caminho_relativo("imagem/bem.png"), 200, 200),
+             Obstaculo(caminho_relativo("imagem/bem.png"), 200, 200),
+             Obstaculo(caminho_relativo("imagem/bem.png"), 200, 200)]
 
 #CRIANDO A FONTE DO PLACAR
 placar = py.font.SysFont("Swis721 BlkEx BTt",40)
@@ -80,7 +81,7 @@ while not fimjogo:
                 if homem.mascara.overlap(obstaculo.mascara,(homem.posicao_x-obstaculo.posicao_x,homem.posicao_y-obstaculo.posicao_y)):
                     obstaculo.posicao_y = obstaculo.y_inicial
                     homem.pontos += 5
-                    print(homem.pontos)
+                    homem.som.play()
 
         for obstaculo in lista_obstaculo:
                 obstaculo.movimentar()
@@ -126,6 +127,7 @@ while not fimjogo:
 
     elif estado == "fimjogo":
          tela.blit(telafinal,(0,0))
+         py.mixer.music.stop()
 
     py.display.update() # atualiza a teladd
     clock.tick(60)      
